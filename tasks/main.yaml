@@ -1,0 +1,12 @@
+---
+- name: "Manage docker secret"
+  tags:
+    - docker
+    - docker.secret
+  ansible.builtin.import_tasks: secret.yaml
+
+- name: "Manage docker stack"
+  tags:
+    - docker
+    - docker.stack
+  ansible.builtin.import_tasks: stack.yaml
