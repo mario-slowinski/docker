@@ -1,5 +1,6 @@
 ---
 - name: "Create workdir"
+  tags: docker.build.dockerfile
   ansible.builtin.file:
     state: directory
     path: "{{ item['path'] | dirname }}"
@@ -15,3 +16,16 @@
   loop: "{{ docker_builds }}"
   loop_control:
     label: "{{ item['path'] }}"
+
+- name: "Build image"
+  tags: docker.build.image
+  community.docker.docker_image:
+    name: "{{ item['name'] | mandatory }}"
+    tag: "{{ item['tag'] | default(omit) }}"
+    source: "{{ item['source'] | mandatory }}"
+    repository: "{{ item['repository'] | default(omit) }}"
+    force_tag: "{{ item['force_tag'] | default(omit) }}"
+    build: "{{ item['build'] | default(omit) }}"
+  loop: "{{ docker_images }}"
+  loop_control:
+    label: "{{ item['name'] }}"
