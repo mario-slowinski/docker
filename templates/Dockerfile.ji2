@@ -1,0 +1,16 @@
+{% macro format(_directive) %}
+  {%- set _directive = _directive[0] %}
+  {%- if _directive['value'] is mapping %}
+    {{- _directive['key'] }} 
+    {%- for key,val in _directive['value'].items() %}
+      {{- "" }} {{ key }}={{ val }}
+    {%- endfor %}
+  {%- elif _directive['value'] is string %}
+    {{- _directive['key'] }} {{ _directive['value'] }}
+  {%- elif _directive['value'] is sequence %}
+    {{- _directive['key'] }} {{ _directive['value'] | join(' ') }}
+ {%- endif %}
+{% endmacro %}
+{% for directive in item['directives'] %}
+  {{- format(directive|dict2items) }}
+{% endfor %}

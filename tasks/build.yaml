@@ -1,0 +1,17 @@
+---
+- name: "Create workdir"
+  ansible.builtin.file:
+    state: directory
+    path: "{{ item['path'] | dirname }}"
+  loop: "{{ docker_builds }}"
+  loop_control:
+    label: "{{ item['path'] }}"
+
+- name: "Create Dockerfile"
+  tags: docker.build.dockerfile
+  ansible.builtin.template:
+    src: Dockerfile.ji2
+    dest: "{{ item['path'] }}"
+  loop: "{{ docker_builds }}"
+  loop_control:
+    label: "{{ item['path'] }}"
