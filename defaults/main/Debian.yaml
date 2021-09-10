@@ -1,0 +1,6 @@
+---
+Debian_service: "docker"
+Debian_pkgs:
+  - name: docker.io
+    state: latest
+    update_cache: true

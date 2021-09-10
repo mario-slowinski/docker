@@ -1,0 +1,5 @@
+---
+docker_service: "docker"
+docker_pkgs:
+  - name: docker
+    state: latest
