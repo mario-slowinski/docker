@@ -10,3 +10,9 @@
     - docker
     - docker.stack
   ansible.builtin.import_tasks: stack.yaml
+
+- name: "Build docker image"
+  tags:
+    - docker
+    - docker.build
+  ansible.builtin.import_tasks: build.yaml
