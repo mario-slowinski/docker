@@ -1,6 +1,6 @@
 ---
 - name: "Create workdir"
-  tags: docker.build.dockerfile
+  tags: docker.image.dockerfile
   ansible.builtin.file:
     state: directory
     path: "{{ item['path'] | dirname }}"
@@ -9,7 +9,7 @@
     label: "{{ item['path'] }}"
 
 - name: "Create Dockerfile"
-  tags: docker.build.dockerfile
+  tags: docker.image.dockerfile
   ansible.builtin.template:
     src: Dockerfile.ji2
     dest: "{{ item['path'] }}"
@@ -18,7 +18,7 @@
     label: "{{ item['path'] }}"
 
 - name: "Build image"
-  tags: docker.build.image
+  tags: docker.image.build
   community.docker.docker_image:
     name: "{{ item['name'] | mandatory }}"
     tag: "{{ item['tag'] | default(omit) }}"
