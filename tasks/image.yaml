@@ -8,6 +8,15 @@
   loop_control:
     label: "{{ item['path'] }}"
 
+- name: "Copy files to include in image build"
+  tags: docker.image.copy
+  ansible.builtin.copy:
+    src: "{{ item['copy']['src'] }}"
+    dest: "{{ item['copy']['dest'] }}"
+  loop: "{{ docker_builds | selectattr('copy','defined') }}"
+  loop_control:
+    label: "{{ item['copy']['src'] }} => {{ item['copy']['dest'] }}"
+
 - name: "Create Dockerfile"
   tags: docker.image.dockerfile
   ansible.builtin.template:
