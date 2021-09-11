@@ -1,18 +1,24 @@
 ---
-- name: "Manage docker secret"
+- name: "Build docker images"
+  tags:
+    - docker
+    - docker.image
+  ansible.builtin.import_tasks: image.yaml
+
+- name: "Manage docker configs"
+  tags:
+    - docker
+    - docker.config
+  ansible.builtin.import_tasks: config.yaml
+
+- name: "Manage docker secrets"
   tags:
     - docker
     - docker.secret
   ansible.builtin.import_tasks: secret.yaml
 
-- name: "Manage docker stack"
+- name: "Manage docker stacks"
   tags:
     - docker
     - docker.stack
   ansible.builtin.import_tasks: stack.yaml
-
-- name: "Build docker image"
-  tags:
-    - docker
-    - docker.build
-  ansible.builtin.import_tasks: build.yaml
