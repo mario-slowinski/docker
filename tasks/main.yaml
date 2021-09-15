@@ -17,6 +17,12 @@
     - docker.secret
   ansible.builtin.import_tasks: secret.yaml
 
+- name: "Manage docker volumes"
+  tags:
+    - docker
+    - docker.volume
+  ansible.builtin.import_tasks: volume.yaml
+
 - name: "Manage docker stacks"
   tags:
     - docker
