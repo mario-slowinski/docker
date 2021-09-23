@@ -1,7 +1,7 @@
 ---
 - name: "Manage docker stacks"
   community.docker.docker_stack:
-    name: "{{ item['name'] | default(omit) }}"
+    name: "{{ item['name'] | mandatory }}"
     compose: "{{ item['compose'] | default(omit) }}"
     state: "{{ item['state'] | default(omit) }}"
   loop: "{{ docker_stacks | selectattr('name',(docker_stack is defined)|ternary('in','ne'),docker_stack|default([])) }}"
