@@ -27,8 +27,8 @@
   loop_control:
     label: "{{ item['path'] }}"
 
-- name: "Build image"
-  tags: docker.image.build
+- name: "Manage image"
+  tags: docker.image.manage
   community.docker.docker_image:
     name: "{{ item['name'] | mandatory }}"
     tag: "{{ item['tag'] | default(omit) }}"
