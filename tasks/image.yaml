@@ -38,4 +38,4 @@
     build: "{{ item['build'] | default(omit) }}"
   loop: "{{ docker_images }}"
   loop_control:
-    label: "{{ item['name'] }}"
+    label: "{{ item['name'] }} state={{ item['state'] | default('present') }}"
