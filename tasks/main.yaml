@@ -23,6 +23,12 @@
     - docker.volume
   ansible.builtin.import_tasks: volume.yaml
 
+- name: "Manage docker container"
+  tags:
+    - docker
+    - docker.container
+  ansible.builtin.import_tasks: container.yaml
+
 - name: "Manage docker stacks"
   tags:
     - docker
