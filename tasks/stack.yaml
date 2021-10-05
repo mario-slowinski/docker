@@ -4,7 +4,6 @@
     name: "{{ item['name'] | mandatory }}"
     compose: "{{ item['compose'] | default(omit) }}"
     state: "{{ item['state'] | default(omit) }}"
-  loop: "{{ docker_stacks | selectattr('name',(docker_stack is defined)|ternary('in','ne'),docker_stack|default([])) }}"
+  loop: "{{ docker_stacks | selectattr('name',(docker_stack is defined)|ternary('in','ne'),docker_stack|default(['dud'])) }}"
   loop_control:
     label: "{{ item['name'] }}"
-  run_once: true
