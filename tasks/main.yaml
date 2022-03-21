@@ -1,5 +1,11 @@
 ---
-- name: "Build docker images"
+- name: "Manage docker repositories"
+  tags:
+    - docker
+    - docker.repository
+  ansible.builtin.import_tasks: repository.yaml
+
+- name: "Manage docker images"
   tags:
     - docker
     - docker.image

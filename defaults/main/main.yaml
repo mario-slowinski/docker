@@ -2,6 +2,10 @@
 docker_service: "{{ lookup('vars', ansible_os_family+'_service') }}"
 docker_pkgs: "{{ lookup('vars', ansible_os_family+'_pkgs') }}"
 
+docker_config:
+  path: ~/.docker/config.json
+  mode: 0o600
+
 docker_builds: []
 docker_images: []
 docker_configs: []
