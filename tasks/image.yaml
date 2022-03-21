@@ -36,6 +36,8 @@
     repository: "{{ item['repository'] | default(omit) }}"
     force_tag: "{{ item['force_tag'] | default(omit) }}"
     build: "{{ item['build'] | default(omit) }}"
+    push: "{{ item['push'] | default(omit) }}"
+    pull: "{{ item['pull'] | default(omit) }}"
   loop: "{{ docker_images }}"
   loop_control:
     label: "{{ item['name'] }} state={{ item['state'] | default('present') }}"
