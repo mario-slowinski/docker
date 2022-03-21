@@ -1,0 +1,9 @@
+{
+  "auths": {
+{% for registry in docker_registries %}
+    "{{ registry['registry_url'] }}": {
+      "auth": "{{ (registry['username']+':'+registry['password']) | b64encode }}"
+    }{{ (registry != docker_registries[-1]) | ternary(',','') }}
+{% endfor %}{{ "" }}
+  }
+}
