@@ -1,9 +1,9 @@
 ---
-- name: "Manage docker repositories"
+- name: "Manage docker registries"
   tags:
     - docker
-    - docker.repository
-  ansible.builtin.import_tasks: repository.yaml
+    - docker.registry
+  ansible.builtin.import_tasks: registry.yaml
 
 - name: "Manage docker images"
   tags:

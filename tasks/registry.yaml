@@ -1,18 +1,18 @@
 ---
-- name: "Login to docker repository."
-  tags: docker.repository.login
+- name: "Login to docker registry."
+  tags: docker.registry.login
   community.docker.docker_login:
     registry_url: "{{ item['registry_url'] | default(omit) }}"
     username: "{{ item['username'] | default(omit) }}"
     password: "{{ item['password'] | default(omit) }}"
     validate_certs: "{{ item['validate_certs'] | default(omit) }}"
     reauthorize: "{{ item['reauthorize'] | default(omit) }}"
-  loop: "{{ docker_repositories }}"
+  loop: "{{ docker_registries }}"
   loop_control:
     label: "{{ item['registry_url'] }}"
 
 - name: "Create repository config file."
-  tags: docker.repository.config
+  tags: docker.registry.config
   ansible.builtin.template:
     src: registry.ji2
     dest: "{{ item['config_path'] | default(docker_config['path']) }}"
