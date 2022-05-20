@@ -9,6 +9,7 @@
     name: "{{ item['name'] | mandatory }}"
     data: "{{ item['data'] | mandatory }}"
     data_is_b64: "{{ item['b64'] | default(omit) }}"
+    force: "{{ item['force'] | default(omit) }}"
     labels: "{{ item['labels'] | default(omit) }}"
     state: "{{ item['state'] | default(omit) }}"
   loop: "{{ docker_configs }}"
